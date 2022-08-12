@@ -10,33 +10,20 @@ namespace PdfView
 {
      class clsConexao
     {
-        private SqlConnection Conectar()
+        private static string server  = @"DESKTOP-NO90F78\SQLEXPRESS";
+        private static string dataBase = "teste";
+        private static string user =@"DESKTOP-NO90F78\Due";
+
+
+
+        public static string StrCon        
         {
-            string strConexao = @"Data Source=DESKTOP-NO90F78\SQLEXPRESS;Initial Catalog=teste;Integrated Security=True";
-            SqlConnection sqlCon = new SqlConnection(strConexao);
-
-            sqlCon.Open();
-
-            return sqlCon;
-   }
-
-        public SqlDataReader Consulta(string cons)
-        {
-            SqlDataReader dtDados;
-            SqlConnection con1 = Conectar();
-            SqlCommand comando = new SqlCommand(cons, con1);
-            dtDados = comando.ExecuteReader();
-
-            return dtDados;
+          get
+            {
+             return "Data Source=" + server + ";Initial Catalog=" + dataBase + ";Integrated Security=True";
+            }
         }
-        public String InserirDados(String comandoInsercao)
-        {
-            SqlConnection con1 = Conectar();
-            SqlCommand insere = new SqlCommand(comandoInsercao, con1);
-            insere.ExecuteNonQuery();
-
-            return "Inserido com sucesso";
-        }
+         
 
     }
 }
